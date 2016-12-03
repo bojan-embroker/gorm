@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/embroker/now"
+	"github.com/jinzhu/now"
 
 	"testing"
 	"time"
