@@ -3,6 +3,7 @@ package gorm
 import (
 	"bytes"
 	"strings"
+	"sync"
 )
 
 // Copied from golint
@@ -18,8 +19,12 @@ func init() {
 }
 
 var smap = map[string]string{}
+var smapMutex = &sync.Mutex{}
 
 func ToDBName(name string) string {
+	smapMutex.Lock()
+	defer smapMutex.Unlock()
+
 	if v, ok := smap[name]; ok {
 		return v
 	}
